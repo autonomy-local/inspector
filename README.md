@@ -1,0 +1,2 @@
+# inspector
+🍋Edict for Inspector
