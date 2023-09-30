@@ -1,12 +1,22 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import { useSignal } from "@preact/signals";
 
 export function AppTabHeader() {
+  const  anchor = useSignal("profile");
+  window.addEventListener("hashchange", () => {
+    const hash = window.location.hash;
+    if (hash) {
+      anchor.value = hash.slice(1);
+    }
+
+  });
   return (
     <>
       <div class="sm:hidden">
         <label for="tabs" class="sr-only">Select your country</label>
         <select
           id="tabs"
+          disabled={!IS_BROWSER}
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option>Profile</option>
@@ -50,6 +60,10 @@ export function AppTabHeader() {
           </a>
         </li>
       </ul>
+      <div>
+        <p>{anchor}</p>
+        {/* add contents */}
+      </div>
     </>
   );
 }
