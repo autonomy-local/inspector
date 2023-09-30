@@ -1,4 +1,5 @@
 import { AppProps } from "$fresh/server.ts";
+import { AppLinkHeader } from "../components/AppLinkHeader.tsx";
 
 export default function App({ Component }: AppProps) {
   return (
@@ -9,6 +10,7 @@ export default function App({ Component }: AppProps) {
         <title>app</title>
       </head>
       <body>
+        <AppLinkHeader />
         <Component />
       </body>
     </html>
